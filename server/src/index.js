@@ -3,10 +3,10 @@ const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
 const rateLimit = require("./app/middlewares/rateLimit.middleware");
-const routes = require("./app/routes"); // Main routes
+// const routes = require("./app/routes"); // Main routes
 const { connectDatabase } = require("./config/database");
 const logger = require("./config/logger");
-
+const {errorHandler} = require('./app/middlewares/error.middleware')
 const app = express();
 
 // Middleware
@@ -20,10 +20,10 @@ app.use(rateLimit); // Rate Limiting
 connectDatabase();
 
 // API Routes
-app.use("/api", routes);
+// app.use("/api", routes);
 
 // Error Handling Middleware
-app.use(require("./app/middlewares/error.middleware"));
+app.use(errorHandler);
 
 // Export App Instance
 module.exports = app;
