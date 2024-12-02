@@ -3,7 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
 const rateLimit = require("./app/middlewares/rateLimit.middleware");
-// const routes = require("./app/routes"); // Main routes
+const productRoutes = require("./app/routes/product.routes"); // Main routes
 const { connectDatabase } = require("./config/database");
 const logger = require("./config/logger");
 const {errorHandler} = require('./app/middlewares/error.middleware')
@@ -20,7 +20,7 @@ app.use(rateLimit); // Rate Limiting
 connectDatabase();
 
 // API Routes
-// app.use("/api", routes);
+app.use("/api/product", productRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

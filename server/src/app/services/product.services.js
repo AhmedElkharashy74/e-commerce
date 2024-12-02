@@ -1,4 +1,4 @@
-const Product = require("../entities/product.entity");
+const Product = require("../../entities/product.model");
 
 // Service to create a new product
 exports.createProduct = async (productData) => {

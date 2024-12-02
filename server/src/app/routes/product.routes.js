@@ -5,14 +5,14 @@ const {
   getProductById,
   updateProduct,
   deleteProduct,
-} = require("../controllers/products.controller");
-const { authenticate, authorize } = require("../middlewares/auth.middleware");
-const { validateProduct } = require("../validations/products.validation");
+} = require("../controllers/product.controller");
+const { authenticateUser, authorize } = require("../middlewares/auth.middleware");
+const { validateProduct } = require("../validations/product.validation");
 
 const router = express.Router();
 
 // Add a new product (Admin only)
-router.post("/", authenticate, authorize("admin"), validateProduct, createProduct);
+router.post("/", authenticateUser, authorize("admin"), validateProduct, createProduct);
 
 // Get all products with pagination
 router.get("/", getAllProducts);
@@ -21,9 +21,9 @@ router.get("/", getAllProducts);
 router.get("/:id", getProductById);
 
 // Update a product (Admin only)
-router.patch("/:id", authenticate, authorize("admin"), validateProduct, updateProduct);
+router.patch("/:id", authenticateUser, authorize("admin"), validateProduct, updateProduct);
 
 // Delete a product (Admin only)
-router.delete("/:id", authenticate, authorize("admin"), deleteProduct);
+router.delete("/:id", authenticateUser, authorize("admin"), deleteProduct);
 
 module.exports = router;

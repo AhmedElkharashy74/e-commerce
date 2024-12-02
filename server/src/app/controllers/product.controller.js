@@ -1,5 +1,5 @@
-const productService = require("../services/products.service");
-const logger = require("../config/logger"); // Integrate logger
+const productService = require("../services/product.services");
+const logger = require("../../config/logger"); // Integrate logger
 const { validationResult } = require("express-validator");
 
 // Add a new product
